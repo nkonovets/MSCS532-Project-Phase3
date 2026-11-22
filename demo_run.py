@@ -17,7 +17,7 @@ def register(student_id, course_id):            # register a student and print t
     print(f"{student_id} -> {course_id}:", student_registration(students[student_id], courses[course_id]))
 
 
-if __name__ == "__main__":
+def demo_run():
 
     register("S1", "ITSI336")                     # gets the only seat
     register("S1", "ITSI336")                     # already registered

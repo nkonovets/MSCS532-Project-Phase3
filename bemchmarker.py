@@ -10,7 +10,7 @@ from wait_list import Waitlist
 
 def run_benchmark(version):         # time registration and waitlist removal for 3 data sizes
 
-    with open(f"results_{version}.csv", "w", newline="") as f:
+    with open(f"results/results_{version}.csv", "w", newline="") as f:
 
         writer = csv.writer(f)
         writer.writerow(["n", "registration_ms", "waitlist_remove_ms", "memory_kb"])
@@ -52,6 +52,6 @@ def run_benchmark(version):         # time registration and waitlist removal for
 
             row = [n, round(registration, 2), round(removal, 2), round(memory, 1)]
 
-            
+
             writer.writerow(row)
             print(row)

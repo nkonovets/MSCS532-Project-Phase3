@@ -7,7 +7,7 @@ if __name__ == "__main__":
     choice = input("Choose what to run: \n Demo run(d) \n ------------------ \n Benchmark run(b) \n: ")
 
     if choice == "d":
-        demo_run.main()
+        demo_run.demo_run()
 
     elif choice == "b":
         version = input("Please specify name for the results file: ")

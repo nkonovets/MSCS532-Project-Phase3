@@ -2,6 +2,8 @@ from wait_list import Waitlist
 
 class Student:          
 
+    __slots__ = ("id", "year", "completed_courses", "schedule")
+
     def __init__(self, student_id, study_year, completed_courses):  #create a student entity with parameters
         self.id = student_id
         self.year = study_year  #year in school (e.g sophomore, junior, senior)
@@ -11,6 +13,8 @@ class Student:
 
 
 class Course:
+
+    __slots__ = ("id", "level", "capacity", "meeting_times", "prereqs", "enrolled", "waitlist")
 
     def __init__(self, course_id, level, seats, meeting_times, prereqs):
         
