@@ -4,6 +4,8 @@ from entities import Student, Course
 from wait_list import Waitlist
 from registration import student_registration, drop_course
 
+import random
+
 
 class TestRegistrationSystem(unittest.TestCase):
 
@@ -57,5 +59,66 @@ class TestRegistrationSystem(unittest.TestCase):
         self.assertIn("not registered", drop_course(owner, course, students))
 
 
+
+
+
+
+    
+
+
+def stress_test():                  #test how system holds against large number of students
+
+    waitlist = Waitlist()
+
+    for i in range(100_000):
+        waitlist.addentry(f"S{i}", random.randint(1, 4))
+
+    for i in random.sample(range(100_000), 20_000):
+        waitlist.remove_student(f"S{i}")
+
+    years = []
+
+    while waitlist.is_empty() == False:                  #take every student out and save their year
+
+
+        years.append(waitlist.heap[0].priority) 
+        student_id = waitlist.get_first_student()
+
+        print(len(years), student_id, years[-1])
+
+    print("students left:", len(years))                                            
+    print("higher years came out first:", years == sorted(years, reverse=True))
+
+
+
+def edge_test():              #test unusual situations 
+
+    waitlist = Waitlist()
+
+    print("remove a student who is not there:", waitlist.remove_student("S1")) 
+    waitlist.addentry("S1", 2)
+
+    print("remove a student who is there:", waitlist.remove_student("S1"))  
+           
+    print("waitlist is empty after that:", waitlist.is_empty())       
+
+    course = Course("ITSI336", 100, 0, [("Mon", 9, 10)], set())       
+
+    print("course with 0 seats:", student_registration(Student("S2", 1, set()), course))   
+
+
+
+def testnow():
+    edge_test()
+    stress_test()
+
+
+
 if __name__ == "__main__":
     unittest.main()
+
+
+
+
+
+
